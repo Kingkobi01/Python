@@ -5,7 +5,7 @@ from main import encrypt
 
 class TestEncryption(unittest.TestCase):
     def setUp(self):
-        self.message = " "
+        self.message = "banana"
 
     def test_input_has_value(self):
         self.assertIsNotNone(self.message)
@@ -25,8 +25,15 @@ class TestEncryption(unittest.TestCase):
     def test_input_is_differnt_from_output(self):
         self.assertNotEqual(self.message, encrypt(self.message))
 
-    def test_shifted_cipher(self):
-        self.assertEqual(encrypt(self.message), 'a')
+    def test_shifted_cipher_one(self):
+        self.assertEqual(encrypt(self.message), 'cbobob')
+
+    def test_shifted_cipher_with_shifted_value_more_than_one(self):
+        self.assertEqual(encrypt(self.message, 4), 'ferere')
+        self.assertEqual(encrypt(self.message, 8), 'jivivi')
+
+    def test_shifted_cipher_with_negative_shifted_value(self):
+        self.assertEqual(encrypt(self.message, -8), '43f3f3')
 
 
 def main():
